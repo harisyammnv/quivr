@@ -161,10 +161,10 @@ def get_answer(commons: CommonsDep,  chat_message: ChatMessage, email: str, user
     answer = model_response['answer']   
 
     # append sources (file_name) to answer
-    if "source_documents" in answer:
+    if "source_documents" in model_response.keys():
         # logger.debug('Source Documents: %s', answer["source_documents"])
         sources = [
-            doc.metadata["file_name"] for doc in answer["source_documents"]
+            f"{doc.metadata['file_name']}" for doc in model_response["source_documents"]
             if "file_name" in doc.metadata]
         # logger.debug('Sources: %s', sources)
         if sources:
